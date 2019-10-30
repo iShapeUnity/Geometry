@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$USER_HOME$/Library/Caches/Rider2019.2/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2019.2/resharper-host/local/Transient/ReSharperHost/v192/SolutionCaches/_iShape.Geometry.TestProject.-2034357177.00" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p="iShape.Geometry.Runtime.csproj" t="IncludeRecursive" />
+      <e p="iShape.Geometry.TestProject.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp/bin" t="ExcludeRecursive" />
+    </e>
+    <e p="$PROJECT_DIR$/../src/Runtime/iShape/Geometry" t="Include">
+      <e p="IntGeom.cs" t="Include" />
+      <e p="IntShape.cs" t="Include" />
+      <e p="IntVector.cs" t="Include" />
+      <e p="PlainShape.cs" t="Include" />
+      <e p="Shape.cs" t="Include" />
+      <e p="Vertex.cs" t="Include" />
+    </e>
+  </component>
+</project>
