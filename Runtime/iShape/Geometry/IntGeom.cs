@@ -7,7 +7,7 @@ namespace iShape.Geometry {
 
         public static readonly IntGeom DefGeom = new IntGeom(10000);
 
-        public static int maxBits = 31;
+        public static readonly int maxBits = 31;
         public readonly float scale;
         public readonly float invertScale;
 
