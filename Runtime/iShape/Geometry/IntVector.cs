@@ -28,6 +28,14 @@ namespace iShape.Geometry {
             return new IntVector(left.x - right.x, left.y - right.y);
         }
 
+        public static bool operator== (IntVector left, IntVector right) {
+            return left.x == right.x && left.y == right.y;
+        }
+        
+        public static bool operator!= (IntVector left, IntVector right) {
+            return left.x != right.x || left.y != right.y;
+        }
+
         public long ScalarMultiply(IntVector vector) {
             return this.x * vector.x + vector.y * this.y;
         }   
