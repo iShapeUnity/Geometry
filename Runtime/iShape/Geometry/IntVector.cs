@@ -36,6 +36,20 @@ namespace iShape.Geometry {
             return left.x != right.x || left.y != right.y;
         }
 
+        private bool Equals(IntVector other) {
+            return x == other.x && y == other.y;
+        }
+
+        public override bool Equals(object obj) {
+            return obj is IntVector other && Equals(other);
+        }
+
+        public override int GetHashCode() {
+            unchecked {
+                return (x * 397) + y;
+            }
+        }
+
         public long ScalarMultiply(IntVector vector) {
             return this.x * vector.x + vector.y * this.y;
         }   
