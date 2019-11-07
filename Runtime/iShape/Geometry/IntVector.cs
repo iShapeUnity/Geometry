@@ -9,11 +9,7 @@ namespace iShape.Geometry {
         public readonly long x;
         public readonly long y;
 
-        public long BitPack {
-            get {
-                return (x << IntGeom.maxBits) + y;
-            }
-        }
+        public long BitPack => (x << IntGeom.maxBits) + y;
 
         public IntVector(long x, long y) {
             this.x = x;
@@ -46,7 +42,7 @@ namespace iShape.Geometry {
 
         public override int GetHashCode() {
             unchecked {
-                return (x * 397) + y;
+                return (int)(x * 397 + y);
             }
         }
 
