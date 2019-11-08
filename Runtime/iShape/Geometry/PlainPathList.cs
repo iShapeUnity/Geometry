@@ -46,5 +46,13 @@ namespace iShape.Geometry {
             points.Add(path);
             layouts.Add(layout);
         }
+        
+        public void Add(NativeSlice<IntVector> path, bool isClockWise) {
+            int begin = points.Count;
+            int end = begin + path.Length;
+            var layout = new Layout(begin, end, isClockWise);
+            points.Add(path);
+            layouts.Add(layout);
+        }
     }
 }
