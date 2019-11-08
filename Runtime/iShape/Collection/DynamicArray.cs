@@ -8,7 +8,9 @@ namespace iShape.Collections {
 		private const int DEFAULT_CAPACITY = 10;
 		private readonly Allocator allocator;
 
-		internal NativeArray<T> array;
+		private NativeArray<T> array;
+
+		public NativeSlice<T> slice => array.Slice(0, Count);
 
 		public DynamicArray(int initialCapacity, Allocator allocator) {
 			if(initialCapacity > 0) {

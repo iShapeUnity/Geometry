@@ -23,7 +23,7 @@ namespace iShape.Geometry {
         public NativeArray<IntVector> GetPath(Layout layout, Allocator allocator) {
             int count = layout.end - layout.begin;
             var slice = new NativeArray<IntVector>(count, allocator);
-            slice.Slice(0, count).CopyFrom(points.array.Slice(0, count));
+            slice.Slice(0, count).CopyFrom(points.slice);
             return slice;
         }
     
