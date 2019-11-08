@@ -16,12 +16,7 @@ namespace iShape.Geometry {
                 this.isHole = isHole;
             }
 
-            public bool isEmpty {
-                get {
-                    return begin == -1;
-                }
-            }
-
+            public bool isEmpty => begin == -1;
         }
 
         public readonly NativeArray<IntVector> points;
