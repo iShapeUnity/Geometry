@@ -17,17 +17,25 @@ namespace iShape.Geometry {
             }
         }
 
-        public DynamicArray<IntVector> points;
-        public DynamicArray<Layout> layouts; 
+        public int Count => layouts.Count;
+
+        private DynamicArray<IntVector> points;
+        private DynamicArray<Layout> layouts; 
     
+        public Layout GetLayout(int index) {
+            return layouts[index];
+        }
+
         public NativeArray<IntVector> GetPath(Layout layout, Allocator allocator) {
             int count = layout.end - layout.begin;
             var slice = new NativeArray<IntVector>(count, allocator);
-            slice.Slice(0, count).CopyFrom(points.slice);
+            slice.Slice(0,count).CopyFrom(points.slice);
             return slice;
         }
-    
-
+        
+        public NativeArray<IntVector> GetPath(int index, Allocator allocator) {
+            return GetPath(layouts[index], allocator);
+        }
     
         public PlainPathList(int capacity, Allocator allocator) {
             this.points = new DynamicArray<IntVector>(10 * capacity, allocator);
