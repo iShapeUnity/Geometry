@@ -54,5 +54,10 @@ namespace iShape.Geometry {
             points.Add(path);
             layouts.Add(layout);
         }
+        
+        public void Dispose() {
+            this.points.Dispose();
+            this.layouts.Dispose(); 
+        }
     }
 }
