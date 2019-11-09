@@ -5,7 +5,7 @@ namespace iShape.Collections {
 	
 	public struct DynamicArray<T>: IDisposable where T : struct {
 
-		private const int DEFAULT_CAPACITY = 10;
+		private const int defaultCapacity = 10;
 		private readonly Allocator allocator;
 
 		private NativeArray<T> array;
@@ -16,7 +16,7 @@ namespace iShape.Collections {
 			if(initialCapacity > 0) {
 				array = new NativeArray<T>(initialCapacity, allocator);
 			} else {
-				array = new NativeArray<T>(DEFAULT_CAPACITY, allocator);
+				array = new NativeArray<T>(defaultCapacity, allocator);
 			}
 
 			this.Count = 0;
@@ -36,6 +36,9 @@ namespace iShape.Collections {
 
 		public int Count { get; private set; }
 
+		public NativeSlice<T> Slice(int start, int length) {
+			return array.Slice(start, length);
+		}
 
 		public void Add(T item) {
 			EnsureExplicitCapacity(Count + 1); // Increments modCount!!
