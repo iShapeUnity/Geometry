@@ -26,15 +26,12 @@ namespace iShape.Geometry {
             return layouts[index];
         }
 
-        public NativeArray<IntVector> GetPath(Layout layout, Allocator allocator) {
+        public NativeArray<IntVector> GetPath(int index, Allocator allocator) {
+            var layout = this.layouts[index];
             int count = layout.end - layout.begin;
             var slice = new NativeArray<IntVector>(count, allocator);
-            slice.Slice(0,count).CopyFrom(points.slice);
+            slice.Slice(0,count).CopyFrom(points.Slice(layout.begin,count));
             return slice;
-        }
-        
-        public NativeArray<IntVector> GetPath(int index, Allocator allocator) {
-            return GetPath(layouts[index], allocator);
         }
     
         public PlainPathList(int capacity, Allocator allocator) {
