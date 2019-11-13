@@ -3,7 +3,6 @@
 namespace iShape.Geometry {
 
     public struct PlainShape {
-
         public struct Layout {
 
             public readonly int begin;
@@ -19,15 +18,26 @@ namespace iShape.Geometry {
             public bool isEmpty => begin == -1;
         }
 
-        public readonly NativeArray<IntVector> points;
-        public readonly NativeArray<Layout> layouts;
+        public NativeArray<IntVector> points;
+        public NativeArray<Layout> layouts;
+        public readonly IntGeom iGeom;
 
+        public PlainShape(NativeArray<IntVector> points, NativeArray<Layout> layouts, IntGeom iGeom) {
+            this.points = points;
+            this.layouts = layouts;
+            this.iGeom = iGeom;
+        }
+        
         public PlainShape(NativeArray<IntVector> points, NativeArray<Layout> layouts) {
             this.points = points;
             this.layouts = layouts;
+            this.iGeom = IntGeom.DefGeom;
         }
 
-        public PlainShape(IntShape iShape, Allocator allocator) {
+        public PlainShape(IntShape iShape, Allocator allocator): this(iShape, IntGeom.DefGeom, allocator) { }
+
+        public PlainShape(IntShape iShape, IntGeom iGeom, Allocator allocator) {
+            this.iGeom = iGeom;
             var count = iShape.hull.Length;
 
             for(int j = 0; j < iShape.holes.Length; ++j) {
@@ -60,7 +70,6 @@ namespace iShape.Geometry {
                 }
 
                 layouts[layoutCounter++] = new Layout(start, end, true);
-
 
                 start = end + 1;
             }
