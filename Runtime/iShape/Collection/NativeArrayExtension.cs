@@ -24,5 +24,20 @@ namespace iShape.Collections {
             return length + offset;
         }
 
+        public static NativeArray<T> Reversed<T>(this NativeSlice<T> slice, Allocator allocator) where T : struct {
+            int length = slice.Length;
+            var array = new NativeArray<T>(length, allocator);
+            array.Slice(0, length).CopyFrom(slice);
+            int n = length >> 1;
+            for (int i = 0, j = length - 1; i < n; ++i, --j) {
+                var a = array[i];
+                var b = array[j];
+                array[j] = a;
+                array[i] = b;
+            }
+
+            return array;
+        }
+
     }
 }
