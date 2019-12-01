@@ -8,8 +8,8 @@ namespace iShape.Geometry {
         public static readonly IntGeom DefGeom = new IntGeom(10000);
 
         public const int maxBits = 31;
-        public readonly float scale;
-        public readonly float invertScale;
+        private readonly float scale;
+        private readonly float invertScale;
 
         public IntGeom(float scale = 10000) {
             this.scale = scale;
@@ -52,7 +52,7 @@ namespace iShape.Geometry {
             int n = paths.Length;
 			var list = new IntVector[n][];
 			for(int i = 0; i < n; ++i) {
-				list[i++] = this.Int(paths[i]);
+				list[i] = this.Int(paths[i]);
 			}
             return list;
         }

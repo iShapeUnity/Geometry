@@ -2,8 +2,8 @@
 
 	public struct IntShape {
 
-        public IntVector[] hull;
-        public IntVector[][] holes;
+        public readonly IntVector[] hull;
+        public readonly IntVector[][] holes;
 
         public IntShape(Shape shape, IntGeom iGeom) {
             this.hull = iGeom.Int(shape.hull);
