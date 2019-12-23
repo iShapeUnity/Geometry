@@ -2,9 +2,11 @@
 
 	public struct IntShape {
 
+        public static readonly IntShape empty = new IntShape(null, null);
+        
         public readonly IntVector[] hull;
         public readonly IntVector[][] holes;
-
+        
         public IntShape(Shape shape, IntGeom iGeom) {
             this.hull = iGeom.Int(shape.hull);
             this.holes = iGeom.Int(shape.holes);
