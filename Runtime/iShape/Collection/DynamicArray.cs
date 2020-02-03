@@ -60,8 +60,20 @@ namespace iShape.Collections {
 			EnsureExplicitCapacity(Count + items.Length); // Increments modCount!!
 			Count = array.Copy(items, Count);
 		}
+		
+		public void RemoveAt(int index) {
+			int next = index + 1;
+			if (next == Count) {
+				this.RemoveLast();
+				return;
+			}
 
-
+			int length = this.Count - next;
+			var tail = this.array.Slice(next, length);
+			this.array.Slice(index, length).CopyFrom(tail);
+			Count -= 1;
+		}
+		
 		public void RemoveLast() {
 			if(Count > 0) {
 				Count -= 1;
@@ -70,6 +82,14 @@ namespace iShape.Collections {
 
 		public void RemoveAll() {
 			Count = 0;
+		}
+		
+		public void Exclude(int index) {
+			int lastIndex = this.Count - 1;
+			if(lastIndex != index) {
+				this[index] = this[lastIndex];
+			}
+			this.RemoveLast();
 		}
 
 		public NativeArray<T> ToArray(Allocator allocator) {
