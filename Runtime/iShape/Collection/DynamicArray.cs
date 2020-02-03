@@ -12,6 +12,12 @@ namespace iShape.Collections {
 
 		public NativeSlice<T> slice => array.Slice(0, Count);
 
+		public DynamicArray(Allocator allocator) {
+			array = new NativeArray<T>(defaultCapacity, allocator);
+			this.Count = 0;
+			this.allocator = allocator;
+		}
+		
 		public DynamicArray(int initialCapacity, Allocator allocator) {
 			if(initialCapacity > 0) {
 				array = new NativeArray<T>(initialCapacity, allocator);
