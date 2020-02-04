@@ -112,6 +112,18 @@ namespace iShape.Collections {
 			Dispose();
 			return flushArray;
 		}
+		
+		public T[] ConvertToArray() {
+			var flushArray = new NativeArray<T>(Count, allocator);
+			flushArray.Copy(0, array, 0, Count);
+
+			Dispose();
+			
+			var result = flushArray.ToArray();
+			flushArray.Dispose();
+			
+			return result;
+		}
 
 
 		public void Dispose() {
