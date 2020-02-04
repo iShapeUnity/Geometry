@@ -57,11 +57,11 @@ namespace iShape.Geometry {
             return list;
         }
 
-        public float Float(long value) {
+        public readonly float Float(long value) {
             return value * invertScale;
         }
 
-        public Vector2 Float(IntVector point) {
+        public readonly Vector2 Float(IntVector point) {
             return new Vector2(point.x * invertScale, point.y * invertScale);
         }
 
@@ -78,7 +78,7 @@ namespace iShape.Geometry {
         }
 
 
-        public Vector2[] Float(IntVector[] points) {
+        public readonly Vector2[] Float(IntVector[] points) {
             int n = points.Length;
             var array = new Vector2[n];
             int i = 0;
@@ -90,7 +90,7 @@ namespace iShape.Geometry {
             return array;
         }
 
-        public Vector2[][] Float(IntVector[][] paths) {
+        public readonly Vector2[][] Float(IntVector[][] paths) {
             int n = paths.Length;
             var list = new Vector2[n][];
 			for(int i = 0; i < n; ++i) {
