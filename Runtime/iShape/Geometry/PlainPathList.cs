@@ -2,7 +2,7 @@ using Unity.Collections;
 using iShape.Collections;
 
 namespace iShape.Geometry {
-    
+    /*
     public struct PlainPathList {
         public struct Layout {
 
@@ -65,4 +65,5 @@ namespace iShape.Geometry {
             this.layouts.Dispose(); 
         }
     }
+    */
 }

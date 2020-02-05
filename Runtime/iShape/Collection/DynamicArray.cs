@@ -85,17 +85,36 @@ namespace iShape.Collections {
 				Count -= 1;
 			}
 		}
+		
+		public void RemoveLast(int count) {
+			Count -= count;
+			if(Count < 0) {
+				Count = 0;
+			}
+		}
 
 		public void RemoveAll() {
 			Count = 0;
 		}
-		
+
 		public void Exclude(int index) {
 			int lastIndex = this.Count - 1;
 			if(lastIndex != index) {
 				this[index] = this[lastIndex];
 			}
 			this.RemoveLast();
+		}
+		
+		public void ReserveCapacity(int capacity) {
+			this.EnsureExplicitCapacity(Count + capacity);
+		}
+
+		public void Fit() {
+			if (this.array.Length > this.Count) {
+				var firArray = this.ToArray(allocator);
+				this.array.Dispose();
+				this.array = firArray;
+			}
 		}
 
 		public NativeArray<T> ToArray(Allocator allocator) {
@@ -131,7 +150,7 @@ namespace iShape.Collections {
 			this.Count = 0;
 		}
 
-
+		
 		private void EnsureExplicitCapacity(int minCapacity) {
 			if(minCapacity - array.Length > 0) {
                 this.Grow(minCapacity);

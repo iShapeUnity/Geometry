@@ -1,4 +1,6 @@
-﻿namespace iShape.Geometry {
+﻿using iShape.Geometry.Container;
+
+namespace iShape.Geometry {
 
 	public struct IntShape {
 
