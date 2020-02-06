@@ -18,11 +18,18 @@ namespace iShape.Geometry.Container {
             this.layouts = new NativeArray<PathLayout>(0, allocator);
         }
         
-        public PlainShape(NativeArray<IntVector> points, bool isClockWise, Allocator allocator) {
+        public PlainShape(PlainShape plainShape, Allocator allocator) {
+            this.points = new NativeArray<IntVector>(plainShape.points, allocator);
+            this.layouts = new NativeArray<PathLayout>(plainShape.layouts, allocator);
+        }
+        
+        public PlainShape(NativeArray<IntVector> points, bool isClockWise, Allocator allocator, bool dispose = false) {
             this.points = new NativeArray<IntVector>(points.Length, allocator);
             this.points.CopyFrom(points);
-
             this.layouts = new NativeArray<PathLayout>(1, allocator) {[0] = new PathLayout(0, points.Length, isClockWise)};
+            if (dispose) {
+                points.Dispose();
+            }
         }
 
         public PlainShape(IntShape iShape, Allocator allocator) {

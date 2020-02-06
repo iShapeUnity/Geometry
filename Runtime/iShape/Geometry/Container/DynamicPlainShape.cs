@@ -19,6 +19,14 @@ namespace iShape.Geometry.Container {
             plainShape.Dispose();
         }
         
+        public DynamicPlainShape(NativeArray<IntVector> points, bool isClockWise, Allocator allocator, bool dispose = false) {
+            this.points = new DynamicArray<IntVector>(points, allocator);
+            this.layouts = new DynamicArray<PathLayout>(1, allocator) {[0] = new PathLayout(0, points.Length, isClockWise)};
+            if (dispose) {
+                points.Dispose();
+            }
+        }
+        
         public NativeArray<IntVector> Get(int index, Allocator allocator) {
             var layout = this.layouts[index];
             var array = new NativeArray<IntVector>(layout.length, allocator);
