@@ -38,6 +38,19 @@ namespace iShape.Collections {
 
             return array;
         }
+        
+        public static NativeArray<T> Reverse<T>(this NativeArray<T> self) where T : struct {
+            int length = self.Length;
+            int n = self.Length >> 1;
+            for (int i = 0, j = length - 1; i < n; ++i, --j) {
+                var a = self[i];
+                var b = self[j];
+                self[j] = a;
+                self[i] = b;
+            }
+
+            return self;
+        }
 
     }
 }

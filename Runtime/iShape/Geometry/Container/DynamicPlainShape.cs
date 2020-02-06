@@ -27,6 +27,11 @@ namespace iShape.Geometry.Container {
             }
         }
         
+        public DynamicPlainShape(int pointsCapacity, int layoutsCapacity, Allocator allocator) {
+            this.points = new DynamicArray<IntVector>(pointsCapacity, allocator);
+            this.layouts = new DynamicArray<PathLayout>(layoutsCapacity, allocator);
+        }
+        
         public NativeArray<IntVector> Get(int index, Allocator allocator) {
             var layout = this.layouts[index];
             var array = new NativeArray<IntVector>(layout.length, allocator);
