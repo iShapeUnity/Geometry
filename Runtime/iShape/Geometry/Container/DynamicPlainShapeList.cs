@@ -19,6 +19,10 @@ namespace iShape.Geometry.Container {
         public void Add(PlainShape shape) {
 
         }
+        
+        public void Add(DynamicPlainShape shape) {
+
+        }
 
         public void Dispose() {
 
