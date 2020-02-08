@@ -23,13 +23,10 @@ namespace iShape.Geometry.Container {
             this.layouts = new NativeArray<PathLayout>(plainShape.layouts, allocator);
         }
         
-        public PlainShape(NativeArray<IntVector> points, bool isClockWise, Allocator allocator, bool dispose = false) {
+        public PlainShape(NativeArray<IntVector> points, bool isClockWise, Allocator allocator) {
             this.points = new NativeArray<IntVector>(points.Length, allocator);
             this.points.CopyFrom(points);
             this.layouts = new NativeArray<PathLayout>(1, allocator) {[0] = new PathLayout(0, points.Length, isClockWise)};
-            if (dispose) {
-                points.Dispose();
-            }
         }
 
         public PlainShape(IntShape iShape, Allocator allocator) {
@@ -75,6 +72,11 @@ namespace iShape.Geometry.Container {
             var array = new NativeArray<IntVector>(layout.length, allocator);
             array.Slice(0, layout.length).CopyFrom(this.points.Slice(layout.begin, layout.length));
             return array;
+        }
+        
+        public NativeSlice<IntVector> Get(int index) {
+            var layout = this.layouts[index];
+            return this.points.Slice(layout.begin, layout.length);
         }
 
         public void Dispose() {
