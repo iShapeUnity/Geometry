@@ -24,12 +24,10 @@ namespace iShape.Geometry.Container {
             this.layouts = new DynamicArray<PathLayout>(layouts);
         }
         
-        public DynamicPlainShape(NativeArray<IntVector> points, bool isClockWise, Allocator allocator, bool dispose = false) {
+        public DynamicPlainShape(NativeArray<IntVector> points, bool isClockWise, Allocator allocator) {
             this.points = new DynamicArray<IntVector>(points, allocator);
-            this.layouts = new DynamicArray<PathLayout>(1, allocator) {[0] = new PathLayout(0, points.Length, isClockWise)};
-            if (dispose) {
-                points.Dispose();
-            }
+            this.layouts = new DynamicArray<PathLayout>(1, allocator);
+            this.layouts.Add(new PathLayout(0, points.Length, isClockWise));
         }
         
         public DynamicPlainShape(int pointsCapacity, int layoutsCapacity, Allocator allocator) {

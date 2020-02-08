@@ -4,9 +4,9 @@ namespace iShape.Geometry.Container {
 
     public struct PlainShapeList {
 
-        internal NativeArray<IntVector> points;
-        internal NativeArray<PathLayout> layouts;
-        internal NativeArray<Segment> segments;
+        public NativeArray<IntVector> points;
+        public NativeArray<PathLayout> layouts;
+        private NativeArray<Segment> segments;
         
         public int Count => segments.Length;
         
