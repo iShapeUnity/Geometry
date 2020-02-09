@@ -71,32 +71,7 @@ namespace iShape.Geometry.Container {
             var tailSlice = this.points.Slice(tailStart, length);
             this.points.Slice(layout.begin, length).CopyFrom(tailSlice);
         }
-        
-        public void ReplaceAt(int index, NativeArray<IntVector> path) {
-            var oldLayout = this.layouts[index];
-            var newLayout = new PathLayout(oldLayout.begin, path.Length, oldLayout.isClockWise);
-            if (newLayout.length == oldLayout.length) {
-                this.points.Slice(oldLayout.begin, oldLayout.length).CopyFrom(path);
-            } else if (index + 1 == this.layouts.Count) {
-                this.layouts[index] = newLayout;
-                this.points.RemoveLast(oldLayout.length);
-                this.points.Add(path);
-            } else {
-                this.layouts[index] = newLayout;
-                int shift = newLayout.length - oldLayout.length;
-                int oldTailLength = this.points.Count - oldLayout.end - 1;
-                this.points.Shift(shift);
 
-                this.points.Slice(newLayout.end + 1, oldTailLength).CopyFrom(this.points.Slice(oldLayout.end + 1, oldTailLength));
-                this.points.Slice(newLayout.begin, newLayout.length).CopyFrom(path);
-                
-                for(int i = index + 1; i < this.layouts.Count; ++i) {
-                    var lt = this.layouts[i];
-                    this.layouts[i] = new PathLayout(lt.begin + shift, lt.length, lt.isClockWise);
-                }
-            }
-        }
-        
         public void ReplaceAt(int index, NativeSlice<IntVector> path) {
             var oldLayout = this.layouts[index];
             var newLayout = new PathLayout(oldLayout.begin, path.Length, oldLayout.isClockWise);

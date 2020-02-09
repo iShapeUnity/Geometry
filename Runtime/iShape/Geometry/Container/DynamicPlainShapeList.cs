@@ -8,27 +8,13 @@ namespace iShape.Geometry.Container {
         public DynamicArray<IntVector> points;
         public DynamicArray<PathLayout> layouts;
         public DynamicArray<Segment> segments;
-        
-        public int Count => segments.Count;
-        
+ 
         public DynamicPlainShapeList(Allocator allocator) {
             this.points = new DynamicArray<IntVector>(0, allocator);
             this.layouts = new DynamicArray<PathLayout>(0, allocator);
             this.segments = new DynamicArray<Segment>(0, allocator);
         }
-        
-        public DynamicPlainShapeList(NativeArray<IntVector> points, NativeArray<PathLayout> layouts, NativeArray<Segment> segments) {
-            this.points = new DynamicArray<IntVector>(points);
-            this.layouts = new DynamicArray<PathLayout>(layouts);
-            this.segments = new DynamicArray<Segment>(segments);
-        }
-        
-        public DynamicPlainShapeList(PlainShape plainShape, Allocator allocator) {
-            this.segments = new DynamicArray<Segment>(1, allocator) {[0] = new Segment(0, 1)};
-            this.points = new DynamicArray<IntVector>(plainShape.points, allocator);
-            this.layouts = new DynamicArray<PathLayout>(plainShape.layouts, allocator);
-        }
-        
+
         public DynamicPlainShapeList(int minimumPointsCapacity, int minimumLayoutsCapacity, int minimumSegmentsCapacity, Allocator allocator) {
             this.points = new DynamicArray<IntVector>(minimumPointsCapacity, allocator);
             this.layouts = new DynamicArray<PathLayout>(minimumLayoutsCapacity, allocator);
