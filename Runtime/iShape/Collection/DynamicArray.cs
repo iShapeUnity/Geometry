@@ -111,8 +111,11 @@ namespace iShape.Collections {
 			this.RemoveLast();
 		}
 		
-		public void ReserveCapacity(int capacity) {
-			this.EnsureExplicitCapacity(Count + capacity);
+		public void Shift(int shift) {
+			if (shift > 0) {
+				this.EnsureExplicitCapacity(Count + shift);	
+			}
+			Count += shift;
 		}
 
 		public void Fit() {

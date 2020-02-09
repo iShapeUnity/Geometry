@@ -84,11 +84,9 @@ namespace iShape.Geometry.Container {
             } else {
                 this.layouts[index] = newLayout;
                 int shift = newLayout.length - oldLayout.length;
-                if (shift > 0) {
-                    this.points.ReserveCapacity(newLayout.length - oldLayout.length);
-                }
-                
                 int oldTailLength = this.points.Count - oldLayout.end - 1;
+                this.points.Shift(shift);
+
                 this.points.Slice(newLayout.end + 1, oldTailLength).CopyFrom(this.points.Slice(oldLayout.end + 1, oldTailLength));
                 this.points.Slice(newLayout.begin, newLayout.length).CopyFrom(path);
                 
@@ -111,11 +109,9 @@ namespace iShape.Geometry.Container {
             } else {
                 this.layouts[index] = newLayout;
                 int shift = newLayout.length - oldLayout.length;
-                if (shift > 0) {
-                    this.points.ReserveCapacity(newLayout.length - oldLayout.length);
-                }
-                
                 int oldTailLength = this.points.Count - oldLayout.end - 1;
+                this.points.Shift(shift);
+                
                 this.points.Slice(newLayout.end + 1, oldTailLength).CopyFrom(this.points.Slice(oldLayout.end + 1, oldTailLength));
                 this.points.Slice(newLayout.begin, newLayout.length).CopyFrom(path);
                 
