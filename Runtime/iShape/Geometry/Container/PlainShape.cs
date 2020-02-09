@@ -26,7 +26,8 @@ namespace iShape.Geometry.Container {
         public PlainShape(NativeArray<IntVector> points, bool isClockWise, Allocator allocator) {
             this.points = new NativeArray<IntVector>(points.Length, allocator);
             this.points.CopyFrom(points);
-            this.layouts = new NativeArray<PathLayout>(1, allocator) {[0] = new PathLayout(0, points.Length, isClockWise)};
+            this.layouts = new NativeArray<PathLayout>(1, allocator);
+            this.layouts[0] = new PathLayout(0, points.Length, isClockWise);
         }
 
         public PlainShape(IntShape iShape, Allocator allocator) {

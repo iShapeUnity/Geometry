@@ -12,13 +12,12 @@ namespace iShape.Geometry.Container {
             this.points = new DynamicArray<IntVector>(allocator);
             this.layouts = new DynamicArray<PathLayout>(allocator);
         }
-        
+
         public DynamicPlainShape(PlainShape plainShape, Allocator allocator) {
             this.points = new DynamicArray<IntVector>(plainShape.points, allocator);
             this.layouts = new DynamicArray<PathLayout>(plainShape.layouts, allocator);
-            plainShape.Dispose();
         }
-        
+
         public DynamicPlainShape(NativeArray<IntVector> points, NativeArray<PathLayout> layouts) {
             this.points = new DynamicArray<IntVector>(points);
             this.layouts = new DynamicArray<PathLayout>(layouts);

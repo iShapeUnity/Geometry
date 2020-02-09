@@ -25,14 +25,17 @@ namespace iShape.Geometry.Container {
         public PlainShapeList(PlainShape plainShape, Allocator allocator) {
             this.points = new NativeArray<IntVector>(plainShape.points, allocator);
             this.layouts = new NativeArray<PathLayout>(plainShape.layouts, allocator);
-            this.segments = new NativeArray<Segment>(1, allocator) {[0] = new Segment(0, 1)};
+            this.segments = new NativeArray<Segment>(1, allocator);
+            this.segments[0] = new Segment(0, 1);
         }
         
 
         public PlainShapeList(NativeArray<IntVector> points, bool isClockWise, Allocator allocator) {
             this.points = new NativeArray<IntVector>(points, allocator);
-            this.layouts = new NativeArray<PathLayout>(1, allocator) {[0] = new PathLayout(0, points.Length, isClockWise)};;
-            this.segments = new NativeArray<Segment>(1, allocator) {[0] = new Segment(0, 1)};
+            this.layouts = new NativeArray<PathLayout>(1, allocator); 
+            this.layouts[0] = new PathLayout(0, points.Length, isClockWise);
+            this.segments = new NativeArray<Segment>(1, allocator);
+            this.segments[0] = new Segment(0, 1);
         }
         
         public PlainShapeList(DynamicPlainShape plainShape, Allocator allocator) {
