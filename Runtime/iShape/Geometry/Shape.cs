@@ -4,9 +4,9 @@ namespace iShape.Geometry {
 
 	public struct Shape {
 
-		public Vector2[] hull;
+		public readonly Vector2[] hull;
 
-		public Vector2[][] holes;
+		public readonly Vector2[][] holes;
 
         public Shape(IntShape shape) : this(shape, IntGeom.DefGeom) { }
 

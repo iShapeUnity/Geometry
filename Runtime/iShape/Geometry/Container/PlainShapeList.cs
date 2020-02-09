@@ -6,7 +6,7 @@ namespace iShape.Geometry.Container {
 
         public NativeArray<IntVector> points;
         public NativeArray<PathLayout> layouts;
-        private NativeArray<Segment> segments;
+        public NativeArray<Segment> segments;
         
         public int Count => segments.Length;
         
