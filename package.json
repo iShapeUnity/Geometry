@@ -2,7 +2,7 @@
     "name": "com.ishape.geometry",
     "displayName": "iShape.Geometry",
     "version": "0.0.1",
-    "unity": "2019.2",
+    "unity": "2019.3",
     "description": "Library to operate with IntVector",
     "keywords": [
         "iShape"
