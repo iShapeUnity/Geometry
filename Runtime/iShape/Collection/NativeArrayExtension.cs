@@ -51,6 +51,12 @@ namespace iShape.Collections {
 
             return self;
         }
+        
+        public static T[] Convert<T>(this NativeArray<T> self) where T : struct {
+            var array = self.ToArray();
+            self.Dispose();
+            return array;
+        }
 
     }
 }
