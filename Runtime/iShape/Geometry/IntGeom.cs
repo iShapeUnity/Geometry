@@ -11,6 +11,8 @@ namespace iShape.Geometry {
         private readonly float scale;
         private readonly float invertScale;
 
+        public float MaxValue => Mathf.Exp(Mathf.Log(2) * maxBits) * invertScale;
+
         public IntGeom(float scale = 10000) {
             this.scale = scale;
             this.invertScale = 1 / scale;
