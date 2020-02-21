@@ -38,6 +38,18 @@ namespace iShape.Geometry {
             return array;
         }
 
+        public NativeArray<IntVector> Int(Vector2[] points, Allocator allocator) {
+            int n = points.Length;
+            var array = new NativeArray<IntVector>(n, allocator);
+            int i = 0;
+            while(i < n) {
+                var point = points[i];
+                array[i] = new IntVector((long)(point.x * scale), (long)(point.y * scale));
+                i += 1;
+            }
+            return array;
+        }
+        
         public IntVector[] Int(Vector2[] points) {
             int n = points.Length;
             var array = new IntVector[n];
