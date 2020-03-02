@@ -55,6 +55,14 @@ namespace iShape.Geometry.Container {
             this.layouts.Add(layout);
         }
         
+        public void Add(PlainShape shape) {
+            // TODO optimise
+            int n = shape.Count;
+            for (int i = 0; i < n; ++i) {
+                this.Add(shape.Get(i), shape.layouts[i].isClockWise);
+            }
+        }
+        
         public void RemoveAt(int index) {
             int count = this.layouts.Count;
             if (index + 1 == count) {
