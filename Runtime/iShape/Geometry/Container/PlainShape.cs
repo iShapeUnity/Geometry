@@ -42,11 +42,11 @@ namespace iShape.Geometry.Container {
 
             int pointCounter = 0;
             for(int k = 0; k < iShape.hull.Length; ++k) {
-                points[pointCounter++] = iShape.hull[k];
+                this.points[pointCounter++] = iShape.hull[k];
             }
 
             var layout = new PathLayout(start, iShape.hull.Length, true);
-            layouts[layoutCounter++] = layout;
+            this.layouts[layoutCounter++] = layout;
 
             start = end + 1;
 
@@ -54,15 +54,33 @@ namespace iShape.Geometry.Container {
                 var hole = iShape.holes[j];
                 end = start + hole.Length - 1;
                 for(int k = 0; k < hole.Length; ++k) {
-                    points[pointCounter++] = hole[k];
+                    this.points[pointCounter++] = hole[k];
                 }
 
-                layouts[layoutCounter++] = new PathLayout(start, hole.Length, false);
+                this.layouts[layoutCounter++] = new PathLayout(start, hole.Length, false);
 
                 start = end + 1;
             }
         }
-        
+
+        public IntVector DoCentralSymmetry() {
+            var slice = this.Get(0);
+            long x = 0;
+            long y = 0;
+            for (int i = 0; i < slice.Length; ++i) {
+                var p = slice[i]; 
+                x += p.x;
+                y += p.y;
+            }
+            
+            for (int i = 0; i < this.points.Length; ++i) {
+                var p = this.points[i];
+                this.points[i] = new IntVector(p.x - x, p.y - y); 
+            }
+
+            return new IntVector(x, y);
+        }
+
         public NativeArray<IntVector> Get(int index, Allocator allocator) {
             var layout = this.layouts[index];
             var array = new NativeArray<IntVector>(layout.length, allocator);

@@ -91,6 +91,17 @@ namespace iShape.Geometry {
             return array;
         }
 
+        public NativeArray<Vector2> Float(NativeSlice<IntVector> points, Allocator allocator) {
+            int n = points.Length;
+            var array = new NativeArray<Vector2>(n, allocator);
+            int i = 0;
+            while(i < n) {
+                var point = points[i];
+                array[i] = new Vector2(point.x * invertScale, point.y * invertScale);
+                i += 1;
+            }
+            return array;
+        }
 
         public Vector2[] Float(IntVector[] points) {
             int n = points.Length;

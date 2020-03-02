@@ -43,6 +43,17 @@ namespace iShape.Geometry.Container {
             this.points.Dispose();
             this.layouts.Dispose();
         }
+        
+        public Vector2[][] ToPaths() {
+            int n = this.layouts.Length;
+            var paths = new Vector2[n][];
+            for (int i = 0; i < n; ++i) {
+                var layout = this.layouts[i];
+                var slice = points.Slice(layout.begin, layout.length);
+                paths[i] = slice.ToArray();
+            }
+            return paths;
+        }
     }
 
 }
