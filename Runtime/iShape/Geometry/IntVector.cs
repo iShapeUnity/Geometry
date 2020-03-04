@@ -2,6 +2,7 @@
 
 namespace iShape.Geometry {
 
+    [System.Serializable]
     public struct IntVector {
 
         public static readonly IntVector Zero = new IntVector(0, 0);
@@ -66,7 +67,9 @@ namespace iShape.Geometry {
         }
 
         public override string ToString() {
-            return "x: " + x + " (" + IntGeom.DefGeom.Float(x) + ") , y: " + y + " (" + IntGeom.DefGeom.Float(y) + ")";
+            float fx = IntGeom.DefGeom.Float(x);
+            float fy = IntGeom.DefGeom.Float(y);
+            return $"x: {x} ({fx}), y: {y} ({fy})";
         }
     }
 

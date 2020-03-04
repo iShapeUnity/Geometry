@@ -1,5 +1,6 @@
 namespace iShape.Geometry.Container {
 
+    [System.Serializable]
     public struct PathLayout {
         
         public readonly int begin;
