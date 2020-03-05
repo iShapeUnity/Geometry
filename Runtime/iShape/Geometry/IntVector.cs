@@ -7,8 +7,8 @@ namespace iShape.Geometry {
 
         public static readonly IntVector Zero = new IntVector(0, 0);
 
-        public readonly long x;
-        public readonly long y;
+        public long x;
+        public long y;
 
         public long BitPack => (x << IntGeom.maxBits) + y;
 
