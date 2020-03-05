@@ -63,17 +63,17 @@ namespace iShape.Geometry.Container {
 
             int offset = 0;
             if (index > 0) {
-                
                 for(int i = 0; i < index; ++i) {
                     var s = this.segments[i];
                     var l = this.layouts[s.end];
-                    offset += l.end + 1;
+                    offset += l.begin + l.length;
                 }
             }
 
-            int pointBegin = shapeLayouts[0].begin + offset;
-            int pointEnd = shapeLayouts[segment.length - 1].end - shapeLayouts[0].begin;
-            int pointLength = pointEnd - pointBegin + 1;
+            // shapeLayouts[0].begin === 0
+            int pointBegin = offset;
+            var lastLayout = shapeLayouts[shapeLayouts.Length - 1];
+            int pointLength = lastLayout.begin + lastLayout.length;
 
             var shapePoints = new NativeArray<IntVector>(pointLength, allocator);
             shapePoints.Slice(0, pointLength).CopyFrom(this.points.Slice(pointBegin, pointLength));
@@ -82,9 +82,10 @@ namespace iShape.Geometry.Container {
         }
         
         public void CopyFrom(DynamicPlainShapeList list) {
-            this.points.Slice(0, list.points.Count).CopyFrom(list.points.Slice(0, list.points.Count));
-            this.layouts.Slice(0, list.layouts.Count).CopyFrom(list.layouts.Slice(0, list.layouts.Count));
-            this.segments.Slice(0, list.segments.Count).CopyFrom(list.segments.Slice(0, list.segments.Count));
+            this.RemoveAll();
+            this.points.Add(list.points);
+            this.layouts.Add(list.layouts);
+            this.segments.Add(list.segments);
         }
         
         public void Dispose() {

@@ -3,9 +3,9 @@ namespace iShape.Geometry.Container {
     [System.Serializable]
     public struct PathLayout {
         
-        public readonly int begin;
-        public readonly int length;
-        public readonly bool isClockWise;
+        public int begin;
+        public int length;
+        public bool isClockWise;
             
         public int end => begin + length - 1;
 
