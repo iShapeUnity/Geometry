@@ -5,22 +5,59 @@ namespace iShape.Geometry {
 
     public static class Vector2ArrayExtension {
         
-        public static Vector2 DoCentralSymmetry(this NativeSlice<Vector2> self) {
+        public static Vector2 GetCentralSymmetry(this NativeSlice<Vector2> self) {
             float x = 0;
             float y = 0;
             int n = self.Length;
+            var b = self[n - 1];
             for (int i = 0; i < n; ++i) {
-                var p = self[i]; 
-                x += p.x;
-                y += p.y;
-            }
-        
-            for (int i = 0; i < n; ++i) {
-                var p = self[i];
-                self[i] = new Vector2(p.x - x, p.y - y); 
+                var a = self[i]; 
+
+                float d = a.x * b.y - b.x * a.y;
+                x += (a.x + b.x) * d;
+                y += (a.y + b.y) * d;
+
+                b = a;
             }
 
-            return new Vector2(x, y);
+            float k = 1f / (6f * Area(self));
+
+            return new Vector2(k * x, k * y);
+        }
+        
+        public static Vector2 GetCentralSymmetry(this NativeSlice<Vector2> self, float area) {
+            float x = 0;
+            float y = 0;
+            int n = self.Length;
+            var b = self[n - 1];
+            for (int i = 0; i < n; ++i) {
+                var a = self[i]; 
+
+                float d = a.x * b.y - b.x * a.y;
+                x += (a.x + b.x) * d;
+                y += (a.y + b.y) * d;
+
+                b = a;
+            }
+
+            float k = 1f / (6f * area);
+
+            return new Vector2(k * x, k * y);
+        }
+        
+        public static float Area(this NativeSlice<Vector2> self) {
+            int n = self.Length;
+            float sum = 0f;
+            var p1 = self[n - 1];
+            for (int i = 0; i < n; i++) {
+                var p2 = self[i];
+                float dif_x = p2.x - p1.x;
+                float sum_y = p2.y + p1.y;
+                sum += dif_x * sum_y;
+                p1 = p2;
+            }
+
+            return 0.5f * sum;
         }
     }
 

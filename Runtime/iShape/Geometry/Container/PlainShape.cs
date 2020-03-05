@@ -1,4 +1,5 @@
-﻿using Unity.Collections;
+﻿using System.Runtime.CompilerServices;
+using Unity.Collections;
 
 namespace iShape.Geometry.Container {
 
@@ -63,22 +64,16 @@ namespace iShape.Geometry.Container {
             }
         }
 
+        // Holes are ignored
         public IntVector DoCentralSymmetry() {
-            var slice = this.Get(0);
-            long x = 0;
-            long y = 0;
-            for (int i = 0; i < slice.Length; ++i) {
-                var p = slice[i]; 
-                x += p.x;
-                y += p.y;
-            }
-            
+            var c = centralSymmetry(this.Get(0)); 
+
             for (int i = 0; i < this.points.Length; ++i) {
                 var p = this.points[i];
-                this.points[i] = new IntVector(p.x - x, p.y - y); 
+                this.points[i] = new IntVector(p.x - c.x, p.y - c.y); 
             }
 
-            return new IntVector(x, y);
+            return c;
         }
 
         public NativeArray<IntVector> Get(int index, Allocator allocator) {
@@ -98,6 +93,40 @@ namespace iShape.Geometry.Container {
             this.layouts.Dispose();
         }
 
+        private static long area(NativeSlice<IntVector> self) {
+            int n = self.Length;
+            long sum = 0;
+            var p1 = self[n - 1];
+            for (int i = 0; i < n; i++) {
+                var p2 = self[i];
+                long dif_x = p2.x - p1.x;
+                long sum_y = p2.y + p1.y;
+                sum += dif_x * sum_y;
+                p1 = p2;
+            }
+
+            return sum >> 1;
+        }
+        
+        private static IntVector centralSymmetry(NativeSlice<IntVector> self) {
+            long x = 0;
+            long y = 0;
+            int n = self.Length;
+            var b = self[n - 1];
+            for (int i = 0; i < n; ++i) {
+                var a = self[i]; 
+
+                long d = a.x * b.y - b.x * a.y;
+                x += (a.x + b.x) * d;
+                y += (a.y + b.y) * d;
+
+                b = a;
+            }
+
+            long k = 6 * area(self);
+
+            return new IntVector(x / k, y / k);
+        }
     }
 
 }
