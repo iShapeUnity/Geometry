@@ -26,7 +26,7 @@ namespace iShape.Geometry.Container {
             this.points = new DynamicArray<Vector2>(pathList.points, allocator);
             this.layouts = new DynamicArray<PathLayout>(pathList.layouts, allocator);
             this.segments = new DynamicArray<Segment>(1, allocator);
-            this.segments[0] = new Segment(0, pathList.layouts.Length);
+            this.segments.Add(new Segment(0, pathList.layouts.Length));
         }
         
         public void Add(PathList pathList) {
