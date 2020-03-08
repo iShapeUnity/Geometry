@@ -94,8 +94,10 @@ namespace iShape.Geometry.Container {
         }
 
         public void Dispose() {
-            this.points.Dispose();
-            this.layouts.Dispose();
+            if (this.points.IsCreated) {
+                this.points.Dispose();
+                this.layouts.Dispose();   
+            }
         }
 
         private static long area(NativeSlice<IntVector> self) {
