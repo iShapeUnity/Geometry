@@ -80,14 +80,7 @@ namespace iShape.Geometry.Container {
             
             return new PlainShape(shapePoints, shapeLayouts);
         }
-        
-        public void CopyFrom(DynamicPlainShapeList list) {
-            this.RemoveAll();
-            this.points.Add(list.points);
-            this.layouts.Add(list.layouts);
-            this.segments.Add(list.segments);
-        }
-        
+
         public void Dispose() {
             this.points.Dispose();
             this.layouts.Dispose();
