@@ -69,7 +69,7 @@ namespace iShape.Geometry {
         public override string ToString() {
             float fx = IntGeom.DefGeom.Float(x);
             float fy = IntGeom.DefGeom.Float(y);
-            return $"x: {x} ({fx}), y: {y} ({fy})";
+            return $"{x}, {y} ({fx}, {fy})";
         }
     }
 
