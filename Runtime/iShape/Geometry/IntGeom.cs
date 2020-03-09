@@ -19,11 +19,11 @@ namespace iShape.Geometry {
         }
 
         public long Int(float value) {
-            return (long)(value * scale);
+            return (long)Mathf.Round(value * scale);
         }
 
         public IntVector Int(Vector2 vector) {
-            return new IntVector((long)(vector.x * scale), (long)(vector.y * scale));
+            return new IntVector((long)Mathf.Round(vector.x * scale), (long)Mathf.Round(vector.y * scale));
         }
 
         public NativeArray<IntVector> Int(NativeArray<Vector2> points, Allocator allocator) {
@@ -32,7 +32,7 @@ namespace iShape.Geometry {
             int i = 0;
             while(i < n) {
                 var point = points[i];
-                array[i] = new IntVector((long)(point.x * scale), (long)(point.y * scale));
+                array[i] = new IntVector((long)Mathf.Round(point.x * scale), (long)Mathf.Round(point.y * scale));
                 i += 1;
             }
             return array;
@@ -44,7 +44,7 @@ namespace iShape.Geometry {
             int i = 0;
             while(i < n) {
                 var point = points[i];
-                array[i] = new IntVector((long)(point.x * scale), (long)(point.y * scale));
+                array[i] = new IntVector((long)Mathf.Round(point.x * scale), (long)Mathf.Round(point.y * scale));
                 i += 1;
             }
             return array;
@@ -56,7 +56,7 @@ namespace iShape.Geometry {
             int i = 0;
             while(i < n) {
                 var point = points[i];
-                array[i] = new IntVector((long)(point.x * scale), (long)(point.y * scale));
+                array[i] = new IntVector((long)Mathf.Round(point.x * scale), (long)Mathf.Round(point.y * scale));
                 i += 1;
             }
             return array;
