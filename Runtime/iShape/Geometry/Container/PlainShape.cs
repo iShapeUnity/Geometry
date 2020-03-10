@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using Unity.Collections;
+﻿using Unity.Collections;
 
 namespace iShape.Geometry.Container {
 
