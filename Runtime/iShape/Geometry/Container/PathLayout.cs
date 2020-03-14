@@ -5,14 +5,15 @@ namespace iShape.Geometry.Container {
         
         public int begin;
         public int length;
-        public bool isClockWise;
-            
+        private byte clockWise;
+        public bool isClockWise => this.clockWise == 1;
+
         public int end => begin + length - 1;
 
         public PathLayout(int begin, int length, bool isClockWise) {
             this.begin = begin;
             this.length = length;
-            this.isClockWise = isClockWise;
+            this.clockWise =  isClockWise ? (byte)1 : (byte)0;
         }
     }
 

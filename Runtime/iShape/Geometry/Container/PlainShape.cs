@@ -13,6 +13,11 @@ namespace iShape.Geometry.Container {
             this.layouts = layouts;
         }
         
+        public PlainShape(IntVector[] points, PathLayout[] layouts, Allocator allocator) {
+            this.points = new NativeArray<IntVector>(points, allocator);
+            this.layouts = new NativeArray<PathLayout>(layouts, allocator);
+        }
+        
         public PlainShape(Allocator allocator) {
             this.points = new NativeArray<IntVector>(0, allocator);
             this.layouts = new NativeArray<PathLayout>(0, allocator);
