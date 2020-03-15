@@ -70,7 +70,6 @@ namespace iShape.Geometry.Container {
                 }
             }
 
-            // shapeLayouts[0].begin === 0
             int pointBegin = offset;
             var lastLayout = shapeLayouts[shapeLayouts.Length - 1];
             int pointLength = lastLayout.begin + lastLayout.length;
