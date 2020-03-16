@@ -8,6 +8,8 @@ namespace iShape.Geometry.Container {
         public NativeArray<PathLayout> layouts;
         public int Count => layouts.Length;
 
+        public long RootArea => area(this.Get(0));
+
         public PlainShape(NativeArray<IntVector> points, NativeArray<PathLayout> layouts) {
             this.points = points;
             this.layouts = layouts;

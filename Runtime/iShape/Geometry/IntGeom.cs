@@ -74,6 +74,10 @@ namespace iShape.Geometry {
         public float Float(long value) {
             return value * invertScale;
         }
+        
+        public float SqrFloat(long value) {
+            return value * invertScale * invertScale;
+        }
 
         public Vector2 Float(IntVector point) {
             return new Vector2(point.x * invertScale, point.y * invertScale);

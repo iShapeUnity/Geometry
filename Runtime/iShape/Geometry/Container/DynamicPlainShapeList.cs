@@ -20,20 +20,13 @@ namespace iShape.Geometry.Container {
             this.layouts = new DynamicArray<PathLayout>(minimumLayoutsCapacity, allocator);
             this.segments = new DynamicArray<Segment>(minimumSegmentsCapacity, allocator);            
         }
-        
+
         public DynamicPlainShapeList(PlainShape shape, Allocator allocator) {
             this.points = new DynamicArray<IntVector>(shape.points, allocator);
             this.layouts = new DynamicArray<PathLayout>(shape.layouts, allocator);
             this.segments = new DynamicArray<Segment>(1, allocator);
             this.segments.Add(new Segment(0, shape.layouts.Length));
         }
-        
-        public void Add(PlainShape shape) {
-            this.segments.Add(new Segment(this.layouts.Count, shape.layouts.Length));
-            this.points.Add(shape.points);
-            this.layouts.Add(shape.layouts);
-        }
-        
         public void RemoveAll() {
             this.segments.RemoveAll();
             this.points.RemoveAll();
@@ -48,6 +41,12 @@ namespace iShape.Geometry.Container {
                 this.Add(shape);
                 shape.Dispose();
             }
+        }
+        
+        public void Add(PlainShape shape) {
+            this.segments.Add(new Segment(this.layouts.Count, shape.layouts.Length));
+            this.points.Add(shape.points);
+            this.layouts.Add(shape.layouts);
         }
         
         public void Add(DynamicPlainShape shape) {
