@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace iShape.Geometry.Container {
 
     [System.Serializable]
@@ -5,6 +7,7 @@ namespace iShape.Geometry.Container {
         
         public int begin;
         public int length;
+        [SerializeField]
         private byte clockWise;
         public bool isClockWise => this.clockWise == 1;
 
