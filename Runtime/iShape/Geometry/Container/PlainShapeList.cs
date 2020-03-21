@@ -26,7 +26,7 @@ namespace iShape.Geometry.Container {
             this.points = new NativeArray<IntVector>(plainShape.points, allocator);
             this.layouts = new NativeArray<PathLayout>(plainShape.layouts, allocator);
             this.segments = new NativeArray<Segment>(1, allocator);
-            this.segments[0] = new Segment(0, 1);
+            this.segments[0] = new Segment(0, plainShape.layouts.Length);
         }
         
 

@@ -40,6 +40,11 @@ namespace iShape.Geometry.Container {
             array.Slice(0, layout.length).CopyFrom(this.points.Slice(layout.begin, layout.length));
             return array;
         }
+        
+        public NativeSlice<IntVector> Get(int index) {
+            var layout = this.layouts[index];
+            return this.points.Slice(layout.begin, layout.length);
+        }
 
         public void Add(NativeArray<IntVector> path, bool isClockWise) {
             int begin = points.Count;

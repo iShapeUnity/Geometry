@@ -98,6 +98,11 @@ namespace iShape.Geometry.Container {
             var layout = this.layouts[index];
             return this.points.Slice(layout.begin, layout.length);
         }
+        
+        public bool IsClockWise(int index) {
+            var layout = layouts[index];
+            return this.isClockWise(layout.begin, layout.end);
+        }
 
         public void Dispose() {
             if (this.points.IsCreated) {
@@ -139,6 +144,20 @@ namespace iShape.Geometry.Container {
             long k = 6 * area(self);
 
             return new IntVector(x / k, y / k);
+        }
+        
+        private bool isClockWise(int begin, int end) {
+            long sum = 0;
+            var p1 = points[end];
+            for (int i = begin; i <= end; i++) {
+                var p2 = points[i];
+                long dif_x = p2.x - p1.x;
+                long sum_y = p2.y + p1.y;
+                sum += dif_x * sum_y;
+                p1 = p2;
+            }
+
+            return sum >= 0;            
         }
     }
 

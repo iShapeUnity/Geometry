@@ -54,6 +54,12 @@ namespace iShape.Geometry.Container {
             this.points.Add(shape.points);
             this.layouts.Add(shape.layouts);
         }
+        
+        public void Add(NativeSlice<IntVector> path) {
+            this.segments.Add(new Segment(this.layouts.Count, 1));
+            this.points.Add(path);
+            this.layouts.Add(new PathLayout(0, path.Length, true));
+        }
 
         public PlainShape Get(int index, Allocator allocator) {
             var segment = this.segments[index];
