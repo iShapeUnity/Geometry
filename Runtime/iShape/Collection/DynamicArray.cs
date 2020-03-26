@@ -8,7 +8,7 @@ namespace iShape.Collections {
 		private const int defaultCapacity = 10;
 		private readonly Allocator allocator;
 
-		private NativeArray<T> array;
+		public NativeArray<T> array;
 
 		public NativeSlice<T> slice => array.Slice(0, Count);
 
@@ -153,12 +153,10 @@ namespace iShape.Collections {
 			return result;
 		}
 
-
 		public void Dispose() {
 			this.array.Dispose();
 			this.Count = 0;
 		}
-
 		
 		private void EnsureExplicitCapacity(int minCapacity) {
 			if(minCapacity - array.Length > 0) {
