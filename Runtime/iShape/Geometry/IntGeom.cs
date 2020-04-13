@@ -17,10 +17,10 @@ namespace iShape.Geometry {
             this.scale = scale;
             this.invertScale = 1 / scale;
         }
-
-        public long Int(float value) {
-            return (long)Mathf.Round(value * scale);
-        }
+        //
+        // public long Int(float value) {
+        //     return (long)Mathf.Round(value * scale);
+        // }
 
         public IntVector Int(Vector2 vector) {
             return new IntVector((long)Mathf.Round(vector.x * scale), (long)Mathf.Round(vector.y * scale));
