@@ -28,6 +28,12 @@ namespace iShape.Collections {
 			this.Count = 0;
 			this.allocator = allocator;
 		}
+		
+		public DynamicArray(T[] array, Allocator allocator) {
+			this.array = new NativeArray<T>(array, allocator);
+			this.allocator = allocator;
+			this.Count = array.Length;
+		}
 
 		public DynamicArray(NativeArray<T> array, Allocator allocator) {
 			this.array = new NativeArray<T>(array, allocator);
@@ -89,6 +95,13 @@ namespace iShape.Collections {
 		public void RemoveLast() {
 			if(Count > 0) {
 				Count -= 1;
+			}
+		}
+		
+		public void RemoveFromEnd(int count) {
+			Count -= count;
+			if(Count < 0) {
+				Count = 0;
 			}
 		}
 		
