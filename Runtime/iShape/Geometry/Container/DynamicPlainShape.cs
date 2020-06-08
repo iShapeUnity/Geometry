@@ -29,6 +29,12 @@ namespace iShape.Geometry.Container {
             this.layouts.Add(new PathLayout(0, points.Length, isClockWise));
         }
         
+        public DynamicPlainShape(NativeSlice<IntVector> points, bool isClockWise, Allocator allocator) {
+            this.points = new DynamicArray<IntVector>(points, allocator);
+            this.layouts = new DynamicArray<PathLayout>(1, allocator);
+            this.layouts.Add(new PathLayout(0, points.Length, isClockWise));
+        }
+        
         public DynamicPlainShape(int pointsCapacity, int layoutsCapacity, Allocator allocator) {
             this.points = new DynamicArray<IntVector>(pointsCapacity, allocator);
             this.layouts = new DynamicArray<PathLayout>(layoutsCapacity, allocator);
@@ -66,6 +72,11 @@ namespace iShape.Geometry.Container {
             for (int i = 0; i < n; ++i) {
                 this.Add(shape.Get(i), shape.layouts[i].isClockWise);
             }
+        }
+        
+        public void AddEmpty() {
+            int begin = points.Count;
+            this.layouts.Add(new PathLayout(begin, 0, true));            
         }
         
         public void RemoveAt(int index) {

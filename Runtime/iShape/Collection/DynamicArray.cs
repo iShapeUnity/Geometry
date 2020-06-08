@@ -41,6 +41,13 @@ namespace iShape.Collections {
 			this.Count = array.Length;
 		}
 		
+		public DynamicArray(NativeSlice<T> slice, Allocator allocator) {
+			this.array = new NativeArray<T>(slice.Length, allocator);
+			this.array.Copy(slice, 0);
+			this.allocator = allocator;
+			this.Count = array.Length;
+		}
+		
 		public DynamicArray(NativeArray<T> array) {
 			this.array = array;
 			this.allocator = Allocator.Temp;
