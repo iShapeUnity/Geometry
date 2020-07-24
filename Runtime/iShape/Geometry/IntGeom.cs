@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace iShape.Geometry {
 
-    public struct IntGeom {
+    public readonly struct IntGeom {
 
         public static readonly IntGeom DefGeom = new IntGeom(10000);
 

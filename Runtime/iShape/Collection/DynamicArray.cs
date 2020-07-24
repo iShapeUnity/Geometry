@@ -146,6 +146,17 @@ namespace iShape.Collections {
 			}
 		}
 
+		public void Reverse() {
+			int count = this.Count;
+			int n = count >> 1;
+			for (int i = 0, j = count - 1; i < n; ++i, --j) {
+				var a = this.array[i];
+				var b = this.array[j];
+				this[j] = a;
+				this[i] = b;
+			}
+		}
+
 		public NativeArray<T> ToArray(Allocator allocator) {
 			var flushArray = new NativeArray<T>(Count, allocator);
 			flushArray.Copy(0, array, 0, Count);
