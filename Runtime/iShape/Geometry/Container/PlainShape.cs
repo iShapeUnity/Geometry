@@ -6,7 +6,7 @@ namespace iShape.Geometry.Container {
 
         public NativeArray<IntVector> points;
         public NativeArray<PathLayout> layouts;
-        public int Count => layouts.Length;
+        public int Count => this.layouts.Length;
 
         public long RootArea => area(this.Get(0));
 

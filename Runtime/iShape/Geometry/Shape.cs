@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace iShape.Geometry {
 
@@ -18,6 +19,18 @@ namespace iShape.Geometry {
         public Shape(Vector2[] hull, Vector2[][] holes) {
             this.hull = hull;
             this.holes = holes;
+        }
+        
+        public Shape(Vector2[][] pathList) {
+	        this.hull = pathList[0];
+	        int n = pathList.Length - 1;
+	        var list = new List<Vector2[]>();
+	        if (n > 0) {
+		        for (int j = 0; j < n; j++) {
+			        list.Add(pathList[j + 1]);
+		        }
+	        }
+	        this.holes = list.ToArray();
         }
 
     }
