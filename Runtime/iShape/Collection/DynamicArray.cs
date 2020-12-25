@@ -99,6 +99,10 @@ namespace iShape.Collections {
 			Count -= 1;
 		}
 		
+		public T Last() {
+			return this.array[Count - 1];
+		}
+		
 		public void RemoveLast() {
 			if(Count > 0) {
 				Count -= 1;

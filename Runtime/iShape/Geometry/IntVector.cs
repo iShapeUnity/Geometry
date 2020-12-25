@@ -50,6 +50,10 @@ namespace iShape.Geometry {
         public long ScalarMultiply(IntVector vector) {
             return this.x * vector.x + vector.y * this.y;
         }   
+        
+        public long CrossProduct(IntVector vector) {
+            return this.x * vector.y - this.y * vector.x;
+        }
     
         public IntVector Normal(IntGeom iGeom) {
             var p = iGeom.Float(this);
