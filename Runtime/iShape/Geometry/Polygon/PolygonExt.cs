@@ -1,10 +1,10 @@
 using Unity.Collections;
 using UnityEngine;
 
-namespace iShape.Geometry {
+namespace iShape.Geometry.Polygon {
 
-    public static class Vector2ArrayExtension {
-        
+    public static class PolygonExt {
+
         public static Vector2 GetCentralSymmetry(this NativeSlice<Vector2> self) {
             float x = 0;
             float y = 0;

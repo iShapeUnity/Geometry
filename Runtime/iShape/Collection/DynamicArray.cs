@@ -29,6 +29,17 @@ namespace iShape.Collections {
 			this.allocator = allocator;
 		}
 		
+		public DynamicArray(int initialCapacity, int count, Allocator allocator) {
+			if(initialCapacity > 0) {
+				array = new NativeArray<T>(initialCapacity, allocator);
+			} else {
+				array = new NativeArray<T>(defaultCapacity, allocator);
+			}
+
+			this.Count = count;
+			this.allocator = allocator;
+		}
+		
 		public DynamicArray(T[] array, Allocator allocator) {
 			this.array = new NativeArray<T>(array, allocator);
 			this.allocator = allocator;
@@ -84,6 +95,15 @@ namespace iShape.Collections {
 		public void Add(NativeSlice<T> items) {
 			EnsureExplicitCapacity(Count + items.Length); // Increments modCount!!
 			Count = array.Copy(items, Count);
+		}
+		
+		public void Add(T item, int count) {
+			EnsureExplicitCapacity(Count + count); // Increments modCount!!
+			for (int i = Count; i < Count + count; ++i) {
+				array[i] = item;	
+			}
+
+			Count += count;
 		}
 		
 		public void RemoveAt(int index) {

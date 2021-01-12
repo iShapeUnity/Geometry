@@ -21,6 +21,10 @@ namespace iShape.Geometry {
         public long Int(float value) {
              return (long)Mathf.Round(value * scale);
         }
+        
+        public long SqrInt(float value) {
+            return (long) Mathf.Round(value * scale * scale);
+        }
 
         public IntVector Int(Vector2 vector) {
             return new IntVector((long)Mathf.Round(vector.x * scale), (long)Mathf.Round(vector.y * scale));

@@ -26,7 +26,6 @@ namespace iShape.Geometry.Container {
             this.layouts[0] = new PathLayout(0, points.Length, isClockWise);
         }
 
-        
         public NativeArray<Vector2> Get(int index, Allocator allocator) {
             var layout = this.layouts[index];
             var array = new NativeArray<Vector2>(layout.length, allocator);

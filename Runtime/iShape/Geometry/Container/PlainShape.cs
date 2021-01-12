@@ -8,7 +8,7 @@ namespace iShape.Geometry.Container {
         public NativeArray<PathLayout> layouts;
         public int Count => this.layouts.Length;
 
-        public long RootArea => area(this.Get(0));
+        public long RootArea => Area(this.Get(0));
 
         public PlainShape(NativeArray<IntVector> points, NativeArray<PathLayout> layouts) {
             this.points = points;
@@ -50,7 +50,7 @@ namespace iShape.Geometry.Container {
             int layoutCounter = 0;
 
             int start = 0;
-            int end = start + iShape.hull.Length - 1;
+            int end = iShape.hull.Length - 1;
 
             int pointCounter = 0;
             for(int k = 0; k < iShape.hull.Length; ++k) {
@@ -111,7 +111,7 @@ namespace iShape.Geometry.Container {
             }
         }
 
-        private static long area(NativeSlice<IntVector> self) {
+        private static long Area(NativeSlice<IntVector> self) {
             int n = self.Length;
             long sum = 0;
             var p1 = self[n - 1];
@@ -141,7 +141,7 @@ namespace iShape.Geometry.Container {
                 b = a;
             }
 
-            long k = 6 * area(self);
+            long k = 6 * Area(self);
 
             return new IntVector(x / k, y / k);
         }

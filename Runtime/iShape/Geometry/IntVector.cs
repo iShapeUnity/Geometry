@@ -10,6 +10,8 @@ namespace iShape.Geometry {
         public long x;
         public long y;
 
+        public long magnitude => x * x + y * y;
+        
         public long BitPack => (x << IntGeom.maxBits) + y;
 
         public IntVector(long x, long y) {
@@ -63,7 +65,7 @@ namespace iShape.Geometry {
             return iGeom.Int(new Vector2(k * p.x, k * p.y));
         }
     
-        public long SqrDistance(IntVector vector) {
+        public readonly long SqrDistance(IntVector vector) {
             var dx = vector.x - this.x;
             var dy = vector.y - this.y;
 

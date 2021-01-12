@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace iShape.Geometry {
 
-	public struct Shape {
+	public readonly struct Shape {
 
 		public readonly Vector2[] hull;
 

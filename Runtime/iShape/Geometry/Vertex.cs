@@ -1,14 +1,25 @@
 ﻿namespace iShape.Geometry {
 
-    public struct Vertex {
+    public readonly struct Vertex {
 
-        public static readonly Vertex empty = new Vertex(0, IntVector.Zero);
+        public enum Nature {
+            origin,
+            extraPath,
+            extraInner,
+            extraTessellated
+        }
 
-        public int index;
-        public IntVector point;
+        public static readonly Vertex empty = new Vertex(0, Nature.origin, IntVector.Zero);
 
-        public Vertex(int index, IntVector point) {
+        public bool isPath => nature == Nature.origin || nature == Nature.extraPath;
+
+        public readonly int index;
+        public readonly Nature nature;
+        public readonly IntVector point;
+
+        public Vertex(int index, Nature nature, IntVector point) {
             this.index = index;
+            this.nature = nature;
             this.point = point;
         }
     }
