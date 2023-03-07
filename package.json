@@ -1,16 +1,20 @@
 {
-    "name": "com.ishape.geometry",
-    "displayName": "iShape.Geometry",
-    "version": "0.0.1",
-    "unity": "2022.2",
-    "description": "Library to operate with IntVector",
-    "keywords": [
-        "iShape"
-    ],
-    "dependencies": {
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/iShapeUnity/Geometry.git"
-    }
+  "name": "com.ishape.geometry",
+  "version": "0.0.2",
+  "displayName": "iShape.Geometry",
+  "description": "Library to operate with IntVector",
+  "unity": "2022.2",
+  "keywords": [
+    "iShape"
+  ],
+  "license": "MIT",
+    "author": {
+    "name": "iShape",
+    "email": "nailxsharipov@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iShapeUnity/Geometry.git"
+  },
+  "dependencies": {},
 }
