@@ -1,7 +1,7 @@
 {
     "name": "iShape.Geometry.Editor.Tests",
     "references": [
-        "iShape.Geometry.Runtime"
+        "iShape.Geometry"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"

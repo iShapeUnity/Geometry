@@ -1,11 +1,13 @@
 {
   "name": "com.ishape.geometry",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "displayName": "iShape.Geometry",
   "description": "Library to operate with IntVector",
   "unity": "2022.2",
   "keywords": [
-    "iShape"
+    "iShape",
+    "2D",
+    "Fixed-Float"
   ],
   "license": "MIT",
     "author": {
@@ -16,5 +18,8 @@
     "type": "git",
     "url": "https://github.com/iShapeUnity/Geometry.git"
   },
-  "dependencies": {}
+  "dependencies": {
+    "com.unity.mathematics": "1.2.6",
+    "com.unity.collections": "1.2.4"
+  }
 }
